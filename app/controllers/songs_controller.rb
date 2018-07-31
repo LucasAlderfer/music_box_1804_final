@@ -6,6 +6,7 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find_by(slug: params[:slug])
+    @like_songs = Song.like_songs(@song)
   end
 
   def new

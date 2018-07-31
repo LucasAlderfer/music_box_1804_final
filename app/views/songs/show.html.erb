@@ -1,2 +1,14 @@
 <h1><%= @song.title %></h1>
 <h3><%= @song.length%></h3>
+<% if @song.rating? %>
+  <p>Rating: <%= @song.rating%></p>
+<% end %>
+
+<% if @song.genres.count > 0 %>
+  <p>Genres for this Song:</p>
+  <% @song.genres.each do |genre| %>
+    <%= genre.name %>
+  <% end %>
+<% end %>
+
+<p>Songs with same rating: <%= @like_songs.join(', ') %></p>

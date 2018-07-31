@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   end
 
   resources :songs, only: [:index]
-  
+
   resources :playlists
 
   resources :users, only: [:new, :create, :show]
+
+  resources :genres, only: [:index, :create, :show]
 
   namespace :admin do
     resources :categories, only: [:index]
