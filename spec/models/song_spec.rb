@@ -26,7 +26,7 @@ describe Song, type: :model do
       song_4 = artist.songs.create(title: "Worlds Apart is the best Journey Song", length: 320, play_count: 390808, rating:4)
       song_5 = artist.songs.create(title: "Stop Believing", length: 320, play_count: 390808, rating:5)
 
-      expect(Song.like_songs(song_1)).to eq [song_2, song_3, song_4]
+      expect(Song.like_songs(song_1)).to eq [song_2.title, song_3.title, song_4.title]
     end
   end
 end

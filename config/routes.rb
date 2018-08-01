@@ -17,10 +17,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
-  resources :genres, only: [:index, :create, :show]
+  resources :genres, only: [:index, :show]
 
   namespace :admin do
     resources :categories, only: [:index]
+    resources :genres, only: [:create]
   end
 
   resources :carts, only: [:create]

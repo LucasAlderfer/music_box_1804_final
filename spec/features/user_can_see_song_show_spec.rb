@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'user sees one song' do
   it 'with title and length' do
     artist = Artist.create(name: 'Journey')
-    song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808)
-    song_2 = artist.songs.create(title: "Anyway You Want It", length: 420, play_count: 67908)
+    song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808, rating:3)
+    song_2 = artist.songs.create(title: "Anyway You Want It", length: 420, play_count: 67908, rating:5)
 
     visit song_path(song_1)
 
@@ -29,7 +29,7 @@ describe 'user sees one song' do
     expect(page).to have_content(genre_2.name)
     expect(page).to_not have_content(genre_3.name)
   end
-  xit 'can see other songs with same rating' do
+  it 'can see other songs with same rating' do
     artist = Artist.create(name: 'Journey')
     song_1 = artist.songs.create(title: "Don't Stop Believing", length: 320, play_count: 390808, rating:4)
     song_2 = artist.songs.create(title: "Wheel In The Sky", length: 320, play_count: 390808, rating:4)
@@ -39,7 +39,6 @@ describe 'user sees one song' do
 
     visit song_path(song_1)
 
-    expect(page).to have_content("Songs with same rating: #{song_2.title}, #{song_3.title}, #{song_4.title}")
-    expect(page).to_not have_content(song_5.name)
+    expect(page).to have_content("Songs with same rating: #{song_2.title}, #{song_3.title}, #{song_4.title}!")
   end
 end
