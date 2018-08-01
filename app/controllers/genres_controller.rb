@@ -6,6 +6,7 @@ class GenresController < ApplicationController
   end
 
   def create
+    require_admin
     @genre = Genre.create(genre_params)
     if @genre.save
       redirect_to genres_path

@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
   def build_cart
     @cart = Cart.new(session[:cart])
   end
+
+  def require_admin
+    render file:'/public/404' unless current_admin?
+  end
 end

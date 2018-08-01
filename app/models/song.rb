@@ -18,6 +18,6 @@ class Song < ApplicationRecord
   end
 
   def self.like_songs(song)
-    select('songs.*').where(rating:song.rating).where.not(title:song.title)
+    select('songs.*').where(rating:song.rating).where.not(title:song.title).pluck(:title)
   end
 end

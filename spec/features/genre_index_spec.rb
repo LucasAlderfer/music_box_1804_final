@@ -10,6 +10,8 @@ describe 'visiting the genre index page' do
 
       expect(page).to have_content genre_1.name
       expect(page).to have_content genre_2.name
+      click_link genre_1.name
+      expect(current_path).to eq genre_path(genre_1)
     end
     it 'cannot create a new genre' do
       genre_1 = Genre.create(name:'Rock')
@@ -20,8 +22,11 @@ describe 'visiting the genre index page' do
       expect(page).to_not have_button 'Create Genre'
       expect(page).to have_link genre_1.name
       expect(page).to have_link genre_2.name
-      click_link genre_1.name
-      expect(current_path).to eq genre_path(genre_1)
+
+      #
+      #  post genres_path, genre: {name: "new genre"}
+      #  expect(response).to_not be_success
+      #
     end
   end
   context 'as an admin' do
